@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Job Search</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Search Bar -->
+  <ion-searchbar [(ngModel)]="searchQuery" placeholder="Search for jobs"></ion-searchbar>
+
+  <!-- Filter Tags -->
+  <div class="filter-tags">
+    <ion-chip *ngFor="let filter of filters" (click)="removeFilter(filter)" color="light">
+      <ion-label>{{ filter }}</ion-label>
+      <ion-icon name="close-circle"></ion-icon>
+    </ion-chip>
+  </div>
+
+  <!-- Results Section -->
+  <ion-list>
+    <ion-item *ngFor="let job of jobs">
+      <ion-thumbnail slot="start">
+        <img [src]="job.logo" alt="Company Logo" />
+      </ion-thumbnail>
+      <ion-label>
+        <h3>{{ job.company }}</h3>
+        <h2>{{ job.title }}</h2>
+        <p>💰 {{ job.salary }}</p>
+        <p>📍 {{ job.location }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
